@@ -1,0 +1,17 @@
+{
+  "palabras": [
+    "casa", "perro", "gato", "sol", "luna", "mar", "rio",
+    "mesa", "silla", "libro", "amor", "vida", "mundo", "tiempo",
+    "agua", "tierra", "fuego", "aire", "luz", "noche", "dia",
+    "mano", "pie", "ojo", "boca", "nariz", "pelo", "cara",
+    "verde", "azul", "rojo", "amarillo", "negro", "blanco",
+    "arbol", "flor", "cielo", "estrella", "montaña", "ciudad",
+    "calle", "puerta", "ventana", "techo", "pared", "piso",
+    "comer", "beber", "dormir", "hablar", "mirar", "escuchar",
+    "grande", "pequeño", "alto", "bajo", "bonito", "feo",
+    "bueno", "malo", "rapido", "lento", "fuerte", "debil",
+    "feliz", "triste", "alegre", "enojado", "tranquilo",
+    "padre", "madre", "hijo", "hija", "hermano", "hermana",
+    "amigo", "familia", "persona", "hombre", "mujer", "niño"
+  ]
+}
