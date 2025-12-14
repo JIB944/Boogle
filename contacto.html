@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacto - Boogle</title>
+    <link rel="stylesheet" href="estilos/reset.css">
+    <link rel="stylesheet" href="estilos/estilos-base.css">
+    <link rel="stylesheet" href="estilos/responsive.css">
+</head>
+<body>
+    <div class="contenedor-contacto">
+        <header class="encabezado-contacto">
+            <h1>Contacto</h1>
+            <a href="index.html" class="enlace-volver">← Volver al juego</a>
+        </header>
+
+        <main class="contenido-contacto">
+            <form id="formulario-contacto" class="formulario-contacto">
+                <div class="campo-formulario">
+                    <label for="nombre-contacto">Nombre:</label>
+                    <input 
+                        type="text" 
+                        id="nombre-contacto" 
+                        name="nombre-contacto"
+                        required
+                        aria-required="true"
+                        aria-describedby="error-nombre">
+                    <span id="error-nombre" class="mensaje-error oculto"></span>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="email-contacto">Email:</label>
+                    <input 
+                        type="email" 
+                        id="email-contacto" 
+                        name="email-contacto"
+                        required
+                        aria-required="true"
+                        aria-describedby="error-email">
+                    <span id="error-email" class="mensaje-error oculto"></span>
+                </div>
+
+                <div class="campo-formulario">
+                    <label for="mensaje-contacto">Mensaje:</label>
+                    <textarea 
+                        id="mensaje-contacto" 
+                        name="mensaje-contacto"
+                        rows="5"
+                        required
+                        aria-required="true"
+                        aria-describedby="error-mensaje ayuda-mensaje"></textarea>
+                    <span id="ayuda-mensaje" class="texto-ayuda">Mínimo 5 caracteres</span>
+                    <span id="error-mensaje" class="mensaje-error oculto"></span>
+                </div>
+
+                <button type="submit" class="boton-primario">Enviar mensaje</button>
+            </form>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>Desarrollado por [      ]</p>
+            <a href="https://github.com/JIB944/Boogle.git" target="_blank" rel="noopener noreferrer">
+                Ver código en GitHub
+            </a>
+        </footer>
+    </div>
+
+    <script src="scripts/contacto.js"></script>
+</body>
+</html>
