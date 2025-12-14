@@ -1,0 +1,171 @@
+/* Estilos para modales */
+
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-contenido {
+    background-color: var(--color-blanco);
+    border-radius: var(--radio-borde);
+    padding: 2rem;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: var(--sombra-grande);
+    animation: aparecerModal var(--transicion-media);
+}
+
+.modal-grande {
+    max-width: 700px;
+}
+
+@keyframes aparecerModal {
+    from {
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-contenido h2 {
+    margin-bottom: 1.5rem;
+    color: var(--color-primario);
+    text-align: center;
+}
+
+/* Encabezado del modal con botón cerrar */
+.encabezado-modal {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.encabezado-modal h2 {
+    margin-bottom: 0;
+}
+
+.boton-cerrar {
+    font-size: 2rem;
+    color: var(--color-texto-claro);
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    transition: all var(--transicion-rapida);
+}
+
+.boton-cerrar:hover {
+    background-color: var(--color-fondo);
+    color: var(--color-primario);
+}
+
+/* Botones del modal */
+.botones-modal {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.botones-modal button {
+    flex: 1;
+}
+
+/* Controles del ranking */
+.controles-ranking {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.controles-ranking label {
+    font-weight: bold;
+    color: var(--color-texto);
+}
+
+.controles-ranking select {
+    padding: 0.5rem;
+    border: 2px solid var(--color-borde);
+    border-radius: var(--radio-borde);
+}
+
+/* Contenedor del ranking */
+#contenedor-ranking {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.mensaje-vacio {
+    text-align: center;
+    color: var(--color-texto-claro);
+    padding: 2rem;
+    font-style: italic;
+}
+
+/* Tabla de ranking */
+.tabla-ranking {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabla-ranking thead {
+    background-color: var(--color-primario);
+    color: var(--color-blanco);
+}
+
+.tabla-ranking th,
+.tabla-ranking td {
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.tabla-ranking tbody tr {
+    border-bottom: 1px solid var(--color-borde);
+}
+
+.tabla-ranking tbody tr:hover {
+    background-color: var(--color-fondo);
+}
+
+.tabla-ranking .posicion {
+    font-weight: bold;
+    color: var(--color-secundario);
+}
+
+.tabla-ranking .puntaje-destacado {
+    font-weight: bold;
+    color: var(--color-exito);
+}
+
+/* Mensajes del modal fin */
+#mensaje-fin {
+    font-size: 1.125rem;
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+#puntaje-final {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    color: var(--color-secundario);
+    margin-bottom: 1rem;
+}
