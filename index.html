@@ -1,17 +1,185 @@
-<!-- CSS -->
-<link rel="stylesheet" href="estilos/reset.css">
-<link rel="stylesheet" href="estilos/estilos-base.css">
-<link rel="stylesheet" href="estilos/juego.css">
-<link rel="stylesheet" href="estilos/modal.css">
-<link rel="stylesheet" href="estilos/responsive.css">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boogle - Juego de Palabras</title>
+    <link rel="stylesheet" href="estilos/reset.css">
+    <link rel="stylesheet" href="estilos/estilos-base.css">
+    <link rel="stylesheet" href="estilos/juego.css">
+    <link rel="stylesheet" href="estilos/modal.css">
+    <link rel="stylesheet" href="estilos/responsive.css">
+</head>
+<body>
+    <!-- Modal de inicio -->
+    <div id="modal-inicio" class="modal" role="dialog" aria-labelledby="titulo-modal-inicio">
+        <div class="modal-contenido">
+            <h2 id="titulo-modal-inicio">¡Bienvenido a Boogle!</h2>
+            <form id="formulario-inicio">
+                <div class="campo-formulario">
+                    <label for="nombre-jugador">Nombre del jugador:</label>
+                    <input 
+                        type="text" 
+                        id="nombre-jugador" 
+                        name="nombre-jugador"
+                        minlength="3"
+                        required
+                        aria-required="true"
+                        aria-describedby="ayuda-nombre">
+                    <span id="ayuda-nombre" class="texto-ayuda">Mínimo 3 letras alfanuméricas</span>
+                </div>
+                
+                <div class="campo-formulario">
+                    <label for="selector-tiempo">Duración del juego:</label>
+                    <select id="selector-tiempo" name="selector-tiempo">
+                        <option value="60">1 minuto</option>
+                        <option value="120" selected>2 minutos</option>
+                        <option value="180">3 minutos</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="boton-primario">Comenzar juego</button>
+            </form>
+        </div>
+    </div>
 
-<!-- JavaScript -->
-<script src="scripts/juego/dados.js"></script>
-<script src="scripts/juego/tablero.js"></script>
-<script src="scripts/juego/temporizador.js"></script>
-<script src="scripts/juego/validacion-palabras.js"></script>
-<script src="scripts/juego/puntaje.js"></script>
-<script src="scripts/interfaz/dom.js"></script>
-<script src="scripts/interfaz/modales.js"></script>
-<script src="scripts/interfaz/eventos.js"></script>
-<script src="scripts/principal.js"></script>
+    <!-- Modal de fin de juego -->
+    <div id="modal-fin" class="modal oculto" role="dialog" aria-labelledby="titulo-modal-fin">
+        <div class="modal-contenido">
+            <h2 id="titulo-modal-fin">¡Tiempo terminado!</h2>
+            <p id="mensaje-fin"></p>
+            <p id="puntaje-final"></p>
+            <div class="botones-modal">
+                <button id="boton-ver-ranking" class="boton-secundario">Ver Ranking</button>
+                <button id="boton-jugar-otra-vez" class="boton-primario">Jugar otra vez</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de ranking -->
+    <div id="modal-ranking" class="modal oculto" role="dialog" aria-labelledby="titulo-modal-ranking">
+        <div class="modal-contenido modal-grande">
+            <div class="encabezado-modal">
+                <h2 id="titulo-modal-ranking">Ranking de Partidas</h2>
+                <button id="cerrar-ranking" class="boton-cerrar" aria-label="Cerrar ranking">×</button>
+            </div>
+            
+            <div class="controles-ranking">
+                <label for="ordenar-ranking">Ordenar por:</label>
+                <select id="ordenar-ranking">
+                    <option value="puntaje">Puntaje (mayor a menor)</option>
+                    <option value="fecha">Fecha (más reciente)</option>
+                </select>
+            </div>
+            
+            <div id="contenedor-ranking">
+                <p class="mensaje-vacio">No hay partidas guardadas aún.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedor principal del juego -->
+    <div id="contenedor-juego" class="oculto">
+        <header class="encabezado-juego">
+            <h1>Boogle</h1>
+            <div class="info-jugador">
+                <span id="nombre-jugador-mostrar"></span>
+            </div>
+        </header>
+
+        <main class="contenido-principal">
+            <!-- Panel de información izquierdo -->
+            <aside class="panel-izquierdo">
+                <div class="tarjeta">
+                    <h3>Tiempo</h3>
+                    <div id="temporizador" class="temporizador" aria-live="polite">
+                        <span id="minutos">02</span>:<span id="segundos">00</span>
+                    </div>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Puntuación</h3>
+                    <div id="puntaje" class="puntaje" aria-live="polite">0</div>
+                </div>
+
+                <div class="tarjeta">
+                    <h3>Instrucciones</h3>
+                    <ul class="lista-instrucciones">
+                        <li>Forma palabras de 3+ letras</li>
+                        <li>Las letras deben ser contiguas</li>
+                        <li>No repitas letras en una palabra</li>
+                    </ul>
+                </div>
+            </aside>
+
+            <!-- Tablero de juego -->
+            <section class="seccion-tablero">
+                <div id="palabra-actual" class="palabra-actual" aria-live="polite">
+                    <span class="etiqueta">Palabra:</span>
+                    <span id="texto-palabra-actual"></span>
+                </div>
+
+                <div id="tablero" class="tablero" role="grid" aria-label="Tablero de letras">
+                    <!-- Las 16 celdas del tablero 4x4 -->
+                    <div class="celda" data-indice="0" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="1" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="2" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="3" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="4" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="5" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="6" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="7" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="8" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="9" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="10" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="11" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="12" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="13" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="14" role="gridcell" tabindex="0"></div>
+                    <div class="celda" data-indice="15" role="gridcell" tabindex="0"></div>
+                </div>
+
+                <div class="controles-tablero">
+                    <button id="boton-confirmar" class="boton-primario" disabled>
+                        Confirmar palabra
+                    </button>
+                    <button id="boton-limpiar" class="boton-secundario">
+                        Limpiar
+                    </button>
+                </div>
+            </section>
+
+            <!-- Panel de palabras encontradas -->
+            <aside class="panel-derecho">
+                <div class="tarjeta">
+                    <h3>Palabras encontradas (<span id="contador-palabras">0</span>)</h3>
+                    <ul id="lista-palabras" class="lista-palabras"></ul>
+                </div>
+
+                <button id="boton-mostrar-ranking" class="boton-terciario">
+                    Ver Ranking
+                </button>
+            </aside>
+        </main>
+
+        <footer class="pie-pagina">
+            <p>Desarrollado por [Tu Nombre]</p>
+            <a href="https://github.com/tu-usuario/boogle-game" target="_blank" rel="noopener noreferrer">
+                Ver código en GitHub
+            </a>
+            <a href="contacto.html">Contacto</a>
+        </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="scripts/juego/dados.js"></script>
+    <script src="scripts/juego/tablero.js"></script>
+    <script src="scripts/juego/temporizador.js"></script>
+    <script src="scripts/juego/validacion-palabras.js"></script>
+    <script src="scripts/juego/puntaje.js"></script>
+    <script src="scripts/interfaz/dom.js"></script>
+    <script src="scripts/interfaz/modales.js"></script>
+    <script src="scripts/interfaz/eventos.js"></script>
+    <script src="scripts/principal.js"></script>
+</body>
+</html>
