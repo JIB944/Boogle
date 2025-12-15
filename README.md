@@ -1,4 +1,4 @@
-# 🎮 Boogle - Juego de Palabras
+# 🎮 Boggle - Juego de Palabras
 
 Implementación web del clásico juego Boggle, donde los jugadores deben encontrar palabras en un tablero de 4x4 letras.
 
@@ -20,7 +20,7 @@ Juego de palabras desarrollado con HTML5, CSS3 y JavaScript ES5 puro (sin framew
 
 ## 📦 Estructura del proyecto
 ```
-boogle-game/
+boggle/
 ├── recursos/
 │   ├── datos/
 │   │   └── diccionario-fallback.json
@@ -57,7 +57,7 @@ boogle-game/
 
 1. Clona el repositorio:
 ```bash
-git clone https://github.com/tu-usuario/boogle-game.git
+git clone https://github.com/JIB944/Boogle.git
 ```
 
 2. Abre `index.html` en tu navegador
