@@ -115,11 +115,22 @@ var ModuloModales = (function() {
         minutos = minutos < 10 ? '0' + minutos : minutos;
         return dia + '/' + mes + '/' + anio + ' ' + horas + ':' + minutos;
     }
-    
+
+    function mostrarError(mensaje) {
+        var mensajeError = document.getElementById('mensaje-error');
+
+        if (mensajeError) {
+            mensajeError.textContent = mensaje;
+        }
+
+        mostrar('modal-error');
+    }
+
     return {
         mostrar: mostrar,
         ocultar: ocultar,
         mostrarFinJuego: mostrarFinJuego,
-        mostrarRanking: mostrarRanking
+        mostrarRanking: mostrarRanking,
+        mostrarError: mostrarError
     };
 })();

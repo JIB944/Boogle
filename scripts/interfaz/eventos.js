@@ -8,6 +8,7 @@ var ModuloEventos = (function() {
     var callbackLimpiarSeleccion = null;
     var callbackMostrarRanking = null;
     var callbackJugarOtraVez = null;
+    var callbackTerminarJuego = null;
     var callbackCambioOrdenRanking = null;
     
     function manejarSubmitInicio(evento) {
@@ -15,18 +16,18 @@ var ModuloEventos = (function() {
         evento.stopPropagation();
         var nombre = elementos.nombreJugador.value.trim();
         var tiempo = parseInt(elementos.selectorTiempo.value, 10);
-        
+
         if (nombre.length < 3) {
-            alert('El nombre debe tener al menos 3 caracteres');
+            ModuloModales.mostrarError('El nombre debe tener al menos 3 caracteres');
             return;
         }
-        
+
         var esAlfanumerico = /^[a-zA-Z0-9\s]+$/.test(nombre);
         if (!esAlfanumerico) {
-            alert('El nombre debe ser alfanumérico (solo letras y números)');
+            ModuloModales.mostrarError('El nombre debe ser alfanumérico (solo letras y números)');
             return;
         }
-        
+
         if (callbackInicioJuego) {
             callbackInicioJuego(nombre, tiempo);
         }
@@ -74,7 +75,25 @@ var ModuloEventos = (function() {
     function manejarCerrarRanking() {
         ModuloModales.ocultar('modal-ranking');
     }
-    
+
+    function manejarCerrarError() {
+        ModuloModales.ocultar('modal-error');
+    }
+
+    function manejarTerminarJuego() {
+        if (callbackTerminarJuego) {
+            callbackTerminarJuego();
+        }
+    }
+
+    function manejarSalirInicio() {
+        window.close();
+    }
+
+    function manejarSalirFin() {
+        window.close();
+    }
+
     function configurar(elementosDOM, callbacks) {
         elementos = elementosDOM;
         callbackInicioJuego = callbacks.inicioJuego;
@@ -83,6 +102,7 @@ var ModuloEventos = (function() {
         callbackLimpiarSeleccion = callbacks.limpiarSeleccion;
         callbackMostrarRanking = callbacks.mostrarRanking;
         callbackJugarOtraVez = callbacks.jugarOtraVez;
+        callbackTerminarJuego = callbacks.terminarJuego;
         callbackCambioOrdenRanking = callbacks.cambioOrdenRanking;
         
         if (elementos.formularioInicio) {
@@ -111,8 +131,20 @@ var ModuloEventos = (function() {
         if (elementos.botonJugarOtraVez) {
             elementos.botonJugarOtraVez.addEventListener('click', manejarJugarOtraVez);
         }
+        if (elementos.botonTerminarJuego) {
+            elementos.botonTerminarJuego.addEventListener('click', manejarTerminarJuego);
+        }
+        if (elementos.botonSalirInicio) {
+            elementos.botonSalirInicio.addEventListener('click', manejarSalirInicio);
+        }
+        if (elementos.botonSalirFin) {
+            elementos.botonSalirFin.addEventListener('click', manejarSalirFin);
+        }
         if (elementos.cerrarRanking) {
             elementos.cerrarRanking.addEventListener('click', manejarCerrarRanking);
+        }
+        if (elementos.botonCerrarError) {
+            elementos.botonCerrarError.addEventListener('click', manejarCerrarError);
         }
         if (elementos.ordenarRanking) {
             elementos.ordenarRanking.addEventListener('change', manejarCambioOrdenRanking);

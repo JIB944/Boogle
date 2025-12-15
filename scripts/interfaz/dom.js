@@ -5,6 +5,7 @@ var ModuloDOM = (function() {
         modalInicio: null,
         modalFin: null,
         modalRanking: null,
+        modalError: null,
         formularioInicio: null,
         nombreJugador: null,
         selectorTiempo: null,
@@ -22,7 +23,11 @@ var ModuloDOM = (function() {
         botonMostrarRanking: null,
         botonVerRanking: null,
         botonJugarOtraVez: null,
+        botonTerminarJuego: null,
+        botonSalirInicio: null,
+        botonSalirFin: null,
         cerrarRanking: null,
+        botonCerrarError: null,
         mensajeFin: null,
         puntajeFinal: null,
         ordenarRanking: null,
@@ -33,6 +38,7 @@ var ModuloDOM = (function() {
         elementos.modalInicio = document.getElementById('modal-inicio');
         elementos.modalFin = document.getElementById('modal-fin');
         elementos.modalRanking = document.getElementById('modal-ranking');
+        elementos.modalError = document.getElementById('modal-error');
         elementos.formularioInicio = document.getElementById('formulario-inicio');
         elementos.nombreJugador = document.getElementById('nombre-jugador');
         elementos.selectorTiempo = document.getElementById('selector-tiempo');
@@ -50,7 +56,11 @@ var ModuloDOM = (function() {
         elementos.botonMostrarRanking = document.getElementById('boton-mostrar-ranking');
         elementos.botonVerRanking = document.getElementById('boton-ver-ranking');
         elementos.botonJugarOtraVez = document.getElementById('boton-jugar-otra-vez');
+        elementos.botonTerminarJuego = document.getElementById('boton-terminar-juego');
+        elementos.botonSalirInicio = document.getElementById('boton-salir-inicio');
+        elementos.botonSalirFin = document.getElementById('boton-salir-fin');
         elementos.cerrarRanking = document.getElementById('cerrar-ranking');
+        elementos.botonCerrarError = document.getElementById('boton-cerrar-error');
         elementos.mensajeFin = document.getElementById('mensaje-fin');
         elementos.puntajeFinal = document.getElementById('puntaje-final');
         elementos.ordenarRanking = document.getElementById('ordenar-ranking');
@@ -136,7 +146,24 @@ var ModuloDOM = (function() {
             elementos.botonConfirmar.disabled = !habilitar;
         }
     }
-    
+
+    function mostrarNotificacion(mensaje, tipo) {
+        var notificacion = document.getElementById('notificacion');
+        if (!notificacion) {
+            notificacion = document.createElement('div');
+            notificacion.id = 'notificacion';
+            notificacion.className = 'notificacion';
+            document.body.appendChild(notificacion);
+        }
+
+        notificacion.textContent = mensaje;
+        notificacion.className = 'notificacion ' + tipo + ' visible';
+
+        setTimeout(function() {
+            notificacion.className = 'notificacion ' + tipo;
+        }, 2500);
+    }
+
     return {
         inicializar: inicializar,
         obtener: obtener,
@@ -146,6 +173,7 @@ var ModuloDOM = (function() {
         actualizarPalabraActual: actualizarPalabraActual,
         agregarPalabraALista: agregarPalabraALista,
         limpiarListaPalabras: limpiarListaPalabras,
-        toggleBotonConfirmar: toggleBotonConfirmar
+        toggleBotonConfirmar: toggleBotonConfirmar,
+        mostrarNotificacion: mostrarNotificacion
     };
 })();

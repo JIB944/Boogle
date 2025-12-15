@@ -17,6 +17,7 @@
             <div class="info-jugador">
                 <span id="nombre-jugador-mostrar"></span>
             </div>
+            <button id="boton-terminar-juego" class="boton-terminar">Terminar Juego</button>
         </header>
         <main class="contenido-principal">
             <aside class="panel-izquierdo">
@@ -103,7 +104,10 @@
                         <option value="180">3 minutos</option>
                     </select>
                 </div>
-                <button type="submit" class="boton-primario">Comenzar juego</button>
+                <div class="botones-modal">
+                    <button type="submit" class="boton-primario">Comenzar juego</button>
+                    <button type="button" id="boton-salir-inicio" class="boton-secundario">Salir</button>
+                </div>
             </form>
         </div>
     </div>
@@ -113,8 +117,9 @@
             <p id="mensaje-fin"></p>
             <p id="puntaje-final"></p>
             <div class="botones-modal">
-                <button id="boton-ver-ranking" class="boton-secundario">Ver Ranking</button>
                 <button id="boton-jugar-otra-vez" class="boton-primario">Jugar otra vez</button>
+                <button id="boton-ver-ranking" class="boton-secundario">Ver Ranking</button>
+                <button id="boton-salir-fin" class="boton-secundario">Salir</button>
             </div>
         </div>
     </div>
@@ -145,6 +150,15 @@
                     </thead>
                     <tbody id="cuerpo-tabla-ranking"></tbody>
                 </table>
+            </div>
+        </div>
+    </div>
+    <div id="modal-error" class="modal oculto" role="dialog" aria-labelledby="titulo-modal-error">
+        <div class="modal-contenido">
+            <h2 id="titulo-modal-error">Error</h2>
+            <p id="mensaje-error" class="mensaje-error-modal"></p>
+            <div class="botones-modal">
+                <button id="boton-cerrar-error" class="boton-primario">Aceptar</button>
             </div>
         </div>
     </div>
