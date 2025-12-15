@@ -1,32 +1,27 @@
-/* Estilos para modales */
-
 .modal {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 1000;
 }
-
 .modal-contenido {
-    background-color: var(--color-blanco);
-    border-radius: var(--radio-borde);
-    padding: 2rem;
     max-width: 500px;
     width: 90%;
-    box-shadow: var(--sombra-grande);
-    animation: aparecerModal var(--transicion-media);
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    animation: aparecerModal 0.3s ease;
 }
-
 .modal-grande {
     max-width: 700px;
 }
-
 @keyframes aparecerModal {
     from {
         opacity: 0;
@@ -37,57 +32,46 @@
         transform: translateY(0);
     }
 }
-
 .modal-contenido h2 {
     margin-bottom: 1.5rem;
-    color: var(--color-primario);
     text-align: center;
+    color: #2c3e50;
 }
-
-/* Encabezado del modal con botón cerrar */
 .encabezado-modal {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1.5rem;
 }
-
 .encabezado-modal h2 {
     margin-bottom: 0;
 }
-
 .boton-cerrar {
-    font-size: 2rem;
-    color: var(--color-texto-claro);
-    background: none;
-    border: none;
-    cursor: pointer;
-    width: 40px;
-    height: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 40px;
+    height: 40px;
+    background: none;
+    border: none;
     border-radius: 50%;
-    transition: all var(--transicion-rapida);
+    font-size: 2rem;
+    color: #7f8c8d;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
-
 .boton-cerrar:hover {
-    background-color: var(--color-fondo);
-    color: var(--color-primario);
+    background-color: #ecf0f1;
+    color: #2c3e50;
 }
-
-/* Botones del modal */
 .botones-modal {
     display: flex;
     gap: 1rem;
     margin-top: 2rem;
 }
-
 .botones-modal button {
     flex: 1;
 }
-
-/* Controles del ranking */
 .controles-ranking {
     display: flex;
     justify-content: flex-end;
@@ -95,77 +79,61 @@
     gap: 0.5rem;
     margin-bottom: 1.5rem;
 }
-
 .controles-ranking label {
     font-weight: bold;
-    color: var(--color-texto);
+    color: #2c3e50;
 }
-
 .controles-ranking select {
     padding: 0.5rem;
-    border: 2px solid var(--color-borde);
-    border-radius: var(--radio-borde);
+    border: 2px solid #bdc3c7;
+    border-radius: 8px;
 }
-
-/* Contenedor del ranking */
 #contenedor-ranking {
     max-height: 400px;
     overflow-y: auto;
 }
-
 .mensaje-vacio {
-    text-align: center;
-    color: var(--color-texto-claro);
     padding: 2rem;
+    text-align: center;
     font-style: italic;
+    color: #7f8c8d;
 }
-
-/* Tabla de ranking */
 .tabla-ranking {
     width: 100%;
     border-collapse: collapse;
 }
-
 .tabla-ranking thead {
-    background-color: var(--color-primario);
-    color: var(--color-blanco);
+    background-color: #2c3e50;
+    color: #ffffff;
 }
-
 .tabla-ranking th,
 .tabla-ranking td {
     padding: 0.75rem;
     text-align: left;
 }
-
 .tabla-ranking tbody tr {
-    border-bottom: 1px solid var(--color-borde);
+    border-bottom: 1px solid #bdc3c7;
 }
-
 .tabla-ranking tbody tr:hover {
-    background-color: var(--color-fondo);
+    background-color: #ecf0f1;
 }
-
 .tabla-ranking .posicion {
     font-weight: bold;
-    color: var(--color-secundario);
+    color: #3498db;
 }
-
 .tabla-ranking .puntaje-destacado {
     font-weight: bold;
-    color: var(--color-exito);
+    color: #27ae60;
 }
-
-/* Mensajes del modal fin */
 #mensaje-fin {
+    margin-bottom: 1rem;
     font-size: 1.125rem;
     text-align: center;
-    margin-bottom: 1rem;
 }
-
 #puntaje-final {
+    margin-bottom: 1rem;
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    color: var(--color-secundario);
-    margin-bottom: 1rem;
+    color: #3498db;
 }

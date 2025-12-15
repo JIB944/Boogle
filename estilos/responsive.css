@@ -1,151 +1,118 @@
-/* Estilos responsive */
-
-/* Tablets (768px - 1024px) */
 @media (max-width: 1024px) {
     .contenido-principal {
         flex-direction: column;
         padding: 1rem;
     }
-    
     .panel-izquierdo,
     .panel-derecho {
         flex: 1;
         width: 100%;
     }
-    
     .tablero {
         width: 400px;
         height: 400px;
     }
-    
     .celda {
         font-size: 1.5rem;
     }
 }
-
-/* Móviles (320px - 767px) */
 @media (max-width: 767px) {
     .encabezado-juego {
         flex-direction: column;
         gap: 0.5rem;
         padding: 1rem;
     }
-    
     .encabezado-juego h1 {
         font-size: 1.5rem;
     }
-    
     .contenido-principal {
-        padding: 1rem;
         gap: 1rem;
+        padding: 1rem;
     }
-    
     .tablero {
         width: 320px;
         height: 320px;
-        padding: 0.25rem;
         gap: 0.25rem;
+        padding: 0.25rem;
     }
-    
     .celda {
         width: calc(25% - 0.1875rem);
         height: calc(25% - 0.1875rem);
         font-size: 1.25rem;
     }
-    
     .temporizador {
         font-size: 2rem;
     }
-    
     .puntaje {
         font-size: 2rem;
     }
-    
     .palabra-actual {
-        font-size: 1.125rem;
         min-height: 50px;
+        font-size: 1.125rem;
     }
-    
     .controles-tablero {
         flex-direction: column;
         width: 100%;
     }
-    
     .controles-tablero button {
         width: 100%;
     }
-    
     .modal-contenido {
         width: 95%;
         padding: 1.5rem;
     }
-    
     .botones-modal {
         flex-direction: column;
     }
-    
     .pie-pagina {
         padding: 1rem;
         font-size: 0.875rem;
     }
 }
-
-/* Móviles pequeños (max 375px) */
 @media (max-width: 375px) {
     .tablero {
         width: 280px;
         height: 280px;
     }
-    
     .celda {
         font-size: 1rem;
     }
 }
-
-/* Página de contacto responsive */
 .contenedor-contacto {
     display: flex;
     flex-direction: column;
-    min-height: 100vh;
     max-width: 600px;
+    min-height: 100vh;
     margin: 0 auto;
     padding: 2rem;
 }
-
 .encabezado-contacto {
     margin-bottom: 2rem;
 }
-
 .encabezado-contacto h1 {
     margin-bottom: 1rem;
-    color: var(--color-primario);
+    color: #2c3e50;
 }
-
 .enlace-volver {
-    color: var(--color-secundario);
     font-weight: bold;
+    color: #3498db;
 }
-
 .enlace-volver:hover {
     text-decoration: underline;
 }
-
 .contenido-contacto {
     flex: 1;
 }
-
 .formulario-contacto {
-    background-color: var(--color-blanco);
     padding: 2rem;
-    border-radius: var(--radio-borde);
-    box-shadow: var(--sombra-media);
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
-
 @media (max-width: 767px) {
     .contenedor-contacto {
         padding: 1rem;
     }
-    
     .formulario-contacto {
         padding: 1rem;
     }
